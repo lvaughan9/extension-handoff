@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Handoff Process</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #1f2940;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --accent-green: #22c55e;
+            --accent-blue: #3b82f6;
+            --accent-amber: #f59e0b;
+            --accent-purple: #a855f7;
+            --accent-red: #ef4444;
+            --border-color: #2d3748;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-blue);
+        }
+        
+        h2 {
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+        
+        h3 {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--accent-amber);
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .principle-box {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--accent-purple);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .principle-box strong {
+            color: var(--accent-purple);
+        }
+        
+        .flowchart-container {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-green);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-blue);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            border: 2px solid var(--bg-secondary);
+        }
+        
+        .timeline-week {
+            font-weight: bold;
+            color: var(--accent-amber);
+            font-size: 0.9rem;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .role-card {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .role-card h4 {
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }
+        
+        .tag-location { background: var(--accent-blue); }
+        .tag-timing { background: var(--accent-amber); color: #000; }
+        .tag-decision { background: var(--accent-purple); }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--bg-tertiary);
+            color: var(--accent-amber);
+            font-weight: 600;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 4px solid var(--accent-red);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .success-box {
+            background: rgba(34, 197, 94, 0.15);
+            border-left: 4px solid var(--accent-green);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .section {
+                background: #f5f5f5;
+                break-inside: avoid;
+            }
+            .flowchart-container {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Extension Handoff Process</h1>
+        <p class="subtitle">MATS Research Management — v1.0</p>
+        
+        <div class="section">
+            <h2>Core Principle: SRM Pods Stay Intact</h2>
+            <div class="principle-box">
+                <strong>The handoff unit is the SRM pod, not the individual RM.</strong><br>
+                When fellows transition to extension, they should move within an SRM's supervision cluster whenever possible. Cross-pod handoffs require SRM-to-SRM coordination, not just RM-to-RM.
+            </div>
+            
+            <p style="margin-top: 1rem;">This maintains:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Clean supervision lines (SRM → RM → Fellow)</li>
+                <li>Continuity of context at the SRM level even when RMs change</li>
+                <li>Accountability for fellow outcomes</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Decision Flowchart: Fellow Assignment</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Use this for each fellow entering extension:</p>
+            
+            <div class="flowchart-container">
+                <div class="mermaid">
+flowchart TD
+    START([Fellow accepted to extension]) --> LOC{Same location<br/>in extension?}
+    
+    LOC -->|Yes - Staying| CAP{Current RM<br/>has capacity?}
+    LOC -->|No - Moving| NEWLOC[Assign to RM<br/>in new location]
+    
+    CAP -->|Yes| WANT{RM wants to<br/>continue?}
+    CAP -->|No| SAMEPOD{Another RM in<br/>same SRM pod?}
+    
+    WANT -->|Yes| PERF{Survey/mentor<br/>data positive?}
+    WANT -->|No| SAMEPOD
+    
+    PERF -->|Yes| KEEP[✅ Keep pairing<br/>No handoff needed]
+    PERF -->|No - Issues| SAMEPOD
+    
+    SAMEPOD -->|Yes| PODHAND[Handoff within pod<br/>SRM maintains oversight]
+    SAMEPOD -->|No| CROSSPOD[Cross-pod handoff<br/>SRM-to-SRM coordination]
+    
+    NEWLOC --> SRMCHECK{Receiving SRM<br/>identified?}
+    SRMCHECK -->|Yes| RMASSIGN[Assign to RM<br/>in receiving pod]
+    SRMCHECK -->|No| ESCALATE[⚠️ Escalate to<br/>Extension Lead]
+    
+    PODHAND --> DOC[Document handoff<br/>+ rationale]
+    CROSSPOD --> DOC
+    RMASSIGN --> DOC
+    
+    DOC --> SCHED[Schedule 3-session<br/>handoff sequence]
+    
+    style KEEP fill:#22c55e,color:#000
+    style ESCALATE fill:#ef4444,color:#fff
+    style DOC fill:#3b82f6,color:#fff
+    style SCHED fill:#a855f7,color:#fff
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Handoff Timeline</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Start 4 weeks before extension begins:</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-week">Week -4: Assignment</div>
+                    <p>Extension Lead finalizes RM assignments using flowchart. SRM pods confirmed. All exceptions documented.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Week -3: Session 0 — Async Heads-up</div>
+                    <p>Email/Slack to fellow & mentor: "Here's your extension RM, here's the handoff plan." Both RMs cc'd.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Week -2: Session 1 — New RM Shadows</div>
+                    <p>Existing RM leads the check-in. New RM attends, observes, asks questions, takes notes.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Week -1: Session 2 — New RM Leads</div>
+                    <p>New RM runs the meeting. Existing RM shadows, fills gaps, provides context as needed.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 0: Extension Starts — New RM Owns</div>
+                    <p>New RM has full ownership. Old RM available for questions for 2 weeks, then steps back entirely.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Pre-Extension Checklist</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Extension Lead completes before Day 1:</p>
+            
+            <h3>Fellow Assignments</h3>
+            <ul class="checklist">
+                <li><span class="checkbox"></span> Every extension fellow has a named <strong>primary RM</strong></li>
+                <li><span class="checkbox"></span> Every extension fellow has a named <strong>backup/co-RM</strong> (or explicit "none needed" note)</li>
+                <li><span class="checkbox"></span> Every extension fellow has a named <strong>supervising SRM</strong></li>
+                <li><span class="checkbox"></span> Handoff status tracked for each fellow: <span class="tag tag-timing">Not Started</span> <span class="tag tag-decision">In Progress</span> <span class="tag tag-location">Done</span></li>
+                <li><span class="checkbox"></span> All cross-pod handoffs have documented rationale</li>
+            </ul>
+            
+            <h3>RM Load Validation</h3>
+            <ul class="checklist">
+                <li><span class="checkbox"></span> Each RM's total load calculated: Main + Extension + Side duties</li>
+                <li><span class="checkbox"></span> No RM exceeds sustainable threshold (check with SRM)</li>
+                <li><span class="checkbox"></span> No RM starts extension with 0 fellows (process bug if so)</li>
+                <li><span class="checkbox"></span> Cross-timezone fellows weighted as 1.25-1.5x load</li>
+                <li><span class="checkbox"></span> Megastream/multi-mentor fellows weighted as 1.5x load</li>
+            </ul>
+            
+            <h3>SRM Pod Readiness</h3>
+            <ul class="checklist">
+                <li><span class="checkbox"></span> Each SRM knows which fellows are entering their pod</li>
+                <li><span class="checkbox"></span> Each SRM knows which fellows are leaving their pod (and to whom)</li>
+                <li><span class="checkbox"></span> SRM-to-SRM handoff calls scheduled for cross-pod transfers</li>
+                <li><span class="checkbox"></span> SRM check-in schedule updated for new pod composition</li>
+            </ul>
+            
+            <h3>Systems & Communication</h3>
+            <ul class="checklist">
+                <li><span class="checkbox"></span> Airtable/tracking updated with new RM assignments</li>
+                <li><span class="checkbox"></span> Extension survey questions reviewed (aligned with main program)</li>
+                <li><span class="checkbox"></span> Survey launch date set (early enough for probation decisions)</li>
+                <li><span class="checkbox"></span> Fellow/mentor notification sent (Session 0)</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Roles & Responsibilities</h2>
+            
+            <div class="grid-2">
+                <div class="role-card">
+                    <h4>Extension Lead (Henning)</h4>
+                    <ul style="margin-left: 1rem; font-size: 0.9rem;">
+                        <li>Owns assignment scheme end-to-end</li>
+                        <li>Runs the flowchart for each fellow</li>
+                        <li>Ensures checklist complete before Day 1</li>
+                        <li>Tracks red flags during extension</li>
+                        <li>Delegates execution (survey ops, Airtable, etc.)</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <h4>SRMs</h4>
+                    <ul style="margin-left: 1rem; font-size: 0.9rem;">
+                        <li>Validate RM loads within their pod</li>
+                        <li>Participate in cross-pod handoff calls</li>
+                        <li>Maintain oversight continuity during transitions</li>
+                        <li>Flag capacity/sustainability concerns</li>
+                        <li>Ensure handoff quality in their pod</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <h4>Outgoing RM</h4>
+                    <ul style="margin-left: 1rem; font-size: 0.9rem;">
+                        <li>Prepare handoff notes (fellow context, mentor dynamics)</li>
+                        <li>Lead Session 1, shadow Session 2</li>
+                        <li>Available for questions for 2 weeks post-handoff</li>
+                        <li>Flag any concerns about fellow trajectory</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <h4>Incoming RM</h4>
+                    <ul style="margin-left: 1rem; font-size: 0.9rem;">
+                        <li>Review handoff notes before Session 1</li>
+                        <li>Shadow Session 1, lead Session 2</li>
+                        <li>Confirm ownership at Session 3+</li>
+                        <li>Raise concerns early, not after problems compound</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Red Flags to Track</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Signals that should trigger mid-extension review:</p>
+            
+            <div class="warning-box">
+                <strong>Process Bugs (fix the system):</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>RM starts extension with 0 fellows</li>
+                    <li>Fellow doesn't know who their RM is 1+ week into extension</li>
+                    <li>RMs confused about paired-stream ownership</li>
+                    <li>Handoff sessions didn't happen (went straight to "new RM owns")</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <strong>Capacity Issues (may need reassignment):</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Recurrent overtime/burnout reports from specific RMs</li>
+                    <li>Cross-timezone load creating consistent late nights</li>
+                    <li>RM struggling with extension + main + side duties combined</li>
+                </ul>
+            </div>
+            
+            <div class="success-box">
+                <strong>Healthy Signals:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Fellows report smooth transition in survey</li>
+                    <li>SRMs have context on all fellows in their pod</li>
+                    <li>No "who owns this fellow?" confusion</li>
+                    <li>Handoff rationale documented and retrievable</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Location-Specific Considerations</h2>
+            
+            <table>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Default</th>
+                    <th>Exception Criteria</th>
+                </tr>
+                <tr>
+                    <td>Berkeley main → Berkeley extension</td>
+                    <td>Keep RM if capacity allows</td>
+                    <td>Performance issues, RM preference, load balancing</td>
+                </tr>
+                <tr>
+                    <td>Berkeley main → London extension</td>
+                    <td>Handoff to London RM</td>
+                    <td>Very strong relationship + fellow preference + RM capacity for cross-TZ</td>
+                </tr>
+                <tr>
+                    <td>London main → London extension</td>
+                    <td>Keep RM if capacity allows</td>
+                    <td>Same as Berkeley→Berkeley</td>
+                </tr>
+                <tr>
+                    <td>London main → Berkeley extension</td>
+                    <td>Handoff to Berkeley RM</td>
+                    <td>Rare; document rationale clearly</td>
+                </tr>
+            </table>
+            
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Note:</strong> With 70% of extensions in London, London SRM pods should be sized to absorb this load. Berkeley pods "export" fellows but maintain capacity for the 30% staying.
+            </p>
+        </div>
+        
+        <div class="section" style="background: var(--bg-tertiary);">
+            <h2>Quick Reference: The 3 Questions</h2>
+            <p style="margin-bottom: 1rem;">Before extension starts, every fellow should be able to answer:</p>
+            
+            <ol style="margin-left: 1.5rem; font-size: 1.1rem;">
+                <li style="margin-bottom: 0.5rem;"><strong>Who is my RM?</strong></li>
+                <li style="margin-bottom: 0.5rem;"><strong>Who is my backup/co-RM?</strong> (if applicable)</li>
+                <li><strong>Who is my SRM?</strong> (for escalation)</li>
+            </ol>
+            
+            <p style="margin-top: 1rem; color: var(--text-secondary);">
+                If any fellow can't answer these on Day 1, that's a process bug to fix immediately.
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
