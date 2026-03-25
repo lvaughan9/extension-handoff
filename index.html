@@ -243,11 +243,176 @@
         <h1>🔄 Extension Handoff Process</h1>
         <p class="subtitle">MATS Research Management — v1.0</p>
         
-        <div class="section">
-            <h2>Core Principle: SRM Pods Stay Intact</h2>
+        <!-- TABLE OF CONTENTS -->
+        <div class="section" style="background: var(--bg-tertiary);">
+            <h2 style="margin-top: 0;">Contents</h2>
+            <ol style="margin-left: 1.5rem; columns: 2;">
+                <li><a href="#purpose" style="color: var(--accent-blue);">Purpose & Context</a></li>
+                <li><a href="#problems" style="color: var(--accent-blue);">Problems This Solves</a></li>
+                <li><a href="#goals" style="color: var(--accent-blue);">Goals for RM Assignments</a></li>
+                <li><a href="#proposal" style="color: var(--accent-blue);">Proposed Structure</a></li>
+                <li><a href="#flowchart" style="color: var(--accent-blue);">Decision Flowchart</a></li>
+                <li><a href="#timeline" style="color: var(--accent-blue);">Handoff Timeline</a></li>
+                <li><a href="#checklist" style="color: var(--accent-blue);">Pre-Extension Checklist</a></li>
+                <li><a href="#roles" style="color: var(--accent-blue);">Roles & Responsibilities</a></li>
+                <li><a href="#redflags" style="color: var(--accent-blue);">Red Flags to Track</a></li>
+                <li><a href="#location" style="color: var(--accent-blue);">Location Considerations</a></li>
+            </ol>
+        </div>
+        
+        <!-- PURPOSE & CONTEXT -->
+        <div class="section" id="purpose">
+            <h2>1. Purpose & Context</h2>
+            <p>This document is meant to:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.75rem;">
+                <li><strong>Capture the guiding principles</strong> for extension RM assignments and pairing that leadership has been developing</li>
+                <li><strong>Address concrete failure modes</strong> from previous extensions (unclear ownership, late/sparse handover, some RMs with 0 fellows, confusion for ~2 weeks after start)</li>
+                <li><strong>Give the Extension Lead a clear, written process</strong> so we get:
+                    <ul style="margin-left: 1.5rem; margin-top: 0.25rem;">
+                        <li>Faster, clearer ownership</li>
+                        <li>Better fellow and mentor experience</li>
+                        <li>Something that can scale and be iterated on, not re-invented each cycle</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- PROBLEMS THIS SOLVES -->
+        <div class="section" id="problems">
+            <h2>2. Problems This Solves</h2>
+            <p style="margin-bottom: 1rem;">Previous extension cycles experienced several recurring issues:</p>
+            
+            <div class="warning-box">
+                <strong>Ownership Confusion</strong>
+                <p style="margin-top: 0.5rem;">Some extension RMs spent ~2 weeks unsure of their assignments. Fellows didn't know who to contact. Some RMs ended up with 0 fellows while others were overloaded.</p>
+            </div>
+            
+            <div class="warning-box">
+                <strong>Late/Sparse Handovers</strong>
+                <p style="margin-top: 0.5rem;">Handoffs happened ad-hoc or not at all. New RMs lacked context on fellow history, mentor dynamics, and ongoing issues. No single source of truth for who owned what.</p>
+            </div>
+            
+            <div class="warning-box">
+                <strong>Supervision Gaps</strong>
+                <p style="margin-top: 0.5rem;">When RMs changed, SRM oversight sometimes broke. Nobody had full context on a fellow's trajectory across main → extension transitions.</p>
+            </div>
+            
+            <div class="warning-box">
+                <strong>Timing Misalignment</strong>
+                <p style="margin-top: 0.5rem;">Late hiring and late onboarding meant new RMs were still getting up to speed when they inherited fellows. Handovers happened during crunch periods rather than before.</p>
+            </div>
+        </div>
+        
+        <!-- GOALS FOR RM ASSIGNMENTS -->
+        <div class="section" id="goals">
+            <h2>3. Goals for RM Assignments in Extension</h2>
+            
+            <h3>3.1 Continuity Where It Matters</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li><strong>Default:</strong> If the main-program RM–fellow relationship is strong and the RM has capacity, keep that pairing into extension</li>
+                <li>Make exceptions explicit (documented and communicated) rather than accidental</li>
+            </ul>
+            
+            <h3>3.2 Clarity of Ownership from Day One</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li>Every extension fellow should know <strong>"who is my RM?"</strong> and <strong>"who is my backup?"</strong> before extension starts</li>
+                <li>No RM should start extension unsure of their assignments or with 0 fellows</li>
+            </ul>
+            
+            <h3>3.3 Load and Capacity Sanity</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li>Use RM-to-fellow ratios that keep RMs below burnout threshold (accounting for main + extension + side projects)</li>
+                <li>Reflect extra cognitive load for cross-time-zone or "megastream" situations (weight as 1.25-1.5× a standard fellow)</li>
+            </ul>
+            
+            <h3>3.4 Location and Time-Zone Awareness</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li><strong>London-based extension fellows → London RMs</strong> where feasible</li>
+                <li>Main-program US fellows remaining in Berkeley → Berkeley RMs, unless there's a very strong continuity reason</li>
+                <li>Allow exceptions (e.g., an RM taking scholars across locations) but treat them as deliberate choices with explicit tradeoffs</li>
+            </ul>
+            
+            <h3>3.5 Maintain Supervision Structure</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li>SRM → RM → Fellow chain should remain intact</li>
+                <li>When fellows change RMs, the SRM should ideally stay the same (within-pod handoff) or there should be explicit SRM-to-SRM coordination</li>
+                <li>SRMs need context on all fellows in their pod to provide effective oversight</li>
+            </ul>
+            
+            <h3>3.6 Evaluation Data is Non-Optional</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li>Extension RM assignments must be coupled to standardized fellow & mentor feedback, not just anecdotes</li>
+                <li>This enables: justifying extension RM spend to funders, running probation and promotion decisions fairly</li>
+                <li>Extension RM survey must run on time, with questions aligned to main-program surveys</li>
+            </ul>
+        </div>
+        
+        <!-- PROPOSED STRUCTURE -->
+        <div class="section" id="proposal">
+            <h2>4. Proposed Structure: SRM Pods as the Handoff Unit</h2>
+            
             <div class="principle-box">
-                <strong>The handoff unit is the SRM pod, not the individual RM.</strong><br>
+                <strong>Core Principle: The handoff unit is the SRM pod, not the individual RM.</strong><br>
                 When fellows transition to extension, they should move within an SRM's supervision cluster whenever possible. Cross-pod handoffs require SRM-to-SRM coordination, not just RM-to-RM.
+            </div>
+            
+            <h3>4.1 Why SRM Pods?</h3>
+            <p>We considered several models for structuring extension handoffs:</p>
+            
+            <table style="margin: 1rem 0;">
+                <tr>
+                    <th>Model</th>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+                <tr>
+                    <td><strong>Individual RM continuity</strong><br>(keep same RM regardless of location)</td>
+                    <td>Maximum relationship continuity</td>
+                    <td>Creates cross-timezone burden; breaks location-based SRM supervision; doesn't scale</td>
+                </tr>
+                <tr>
+                    <td><strong>Paired RMs</strong><br>(2 RMs share pool of fellows)</td>
+                    <td>Built-in redundancy; complementary strengths</td>
+                    <td>Unclear SRM accountability; adds coordination overhead; "who owns this fellow?" confusion</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: var(--accent-green);">SRM Pod model</strong><br>(handoffs stay within SRM's cluster)</td>
+                    <td>Clean supervision lines; SRM maintains context even if RM changes; scales with org structure</td>
+                    <td>May require rebalancing pod sizes for London/Berkeley flow</td>
+                </tr>
+            </table>
+            
+            <p><strong>We recommend the SRM Pod model</strong> because it preserves the supervision structure that makes RMs effective. An SRM who has overseen a fellow's main program can maintain oversight into extension even if the day-to-day RM changes—this is better than breaking supervision to preserve an RM relationship.</p>
+            
+            <h3>4.2 How It Works</h3>
+            <ul style="margin-left: 1.5rem;">
+                <li><strong>Each SRM oversees a consistent set of RMs</strong> across main + extension</li>
+                <li><strong>When a fellow transitions, they move within the pod if possible</strong> (same SRM, potentially different RM)</li>
+                <li><strong>Cross-pod handoffs require SRM-to-SRM coordination</strong>, not just RM-to-RM—this ensures context transfers at the supervision level</li>
+                <li><strong>London pods should be sized to absorb extension load</strong> (given 70% of extensions go to London)</li>
+            </ul>
+            
+            <h3>4.3 Paired RMs: When to Use</h3>
+            <p>The paired RM model still has a place, but within the pod structure:</p>
+            <ul style="margin-left: 1.5rem;">
+                <li><strong>Megastreams / multi-mentor setups:</strong> Where multiple mentors share a pool and the cognitive load is high, pair a senior/context-heavy RM with another RM to split fellows</li>
+                <li><strong>Onboarding new RMs:</strong> Pair new extension RMs with experienced ones for their first cycle</li>
+                <li><strong>Always within same SRM pod:</strong> Both RMs report to same SRM, avoiding accountability confusion</li>
+                <li><strong>Document clearly:</strong> Who is primary for which fellows; how evaluation and performance input are split</li>
+            </ul>
+            
+            <div class="success-box">
+                <strong>This maintains:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Clean supervision lines (SRM → RM → Fellow)</li>
+                    <li>Continuity of context at the SRM level even when RMs change</li>
+                    <li>Clear accountability for fellow outcomes</li>
+                    <li>Sustainability—no single RM is a bottleneck or single point of failure</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section" id="flowchart">
             </div>
             
             <p style="margin-top: 1rem;">This maintains:</p>
@@ -258,8 +423,8 @@
             </ul>
         </div>
         
-        <div class="section">
-            <h2>Decision Flowchart: Fellow Assignment</h2>
+        <div class="section" id="flowchart">
+            <h2>5. Decision Flowchart: Fellow Assignment</h2>
             <p style="margin-bottom: 1rem; color: var(--text-secondary);">Use this for each fellow entering extension:</p>
             
             <div class="flowchart-container">
@@ -300,8 +465,8 @@ flowchart TD
             </div>
         </div>
         
-        <div class="section">
-            <h2>Handoff Timeline</h2>
+        <div class="section" id="timeline">
+            <h2>6. Handoff Timeline</h2>
             <p style="margin-bottom: 1rem; color: var(--text-secondary);">Start 4 weeks before extension begins:</p>
             
             <div class="timeline">
@@ -328,8 +493,8 @@ flowchart TD
             </div>
         </div>
         
-        <div class="section">
-            <h2>Pre-Extension Checklist</h2>
+        <div class="section" id="checklist">
+            <h2>7. Pre-Extension Checklist</h2>
             <p style="margin-bottom: 1rem; color: var(--text-secondary);">Extension Lead completes before Day 1:</p>
             
             <h3>Fellow Assignments</h3>
@@ -367,18 +532,41 @@ flowchart TD
             </ul>
         </div>
         
-        <div class="section">
-            <h2>Roles & Responsibilities</h2>
+        <div class="section" id="roles">
+            <h2>8. Roles & Responsibilities</h2>
             
+            <h3>8.1 Leadership Roles</h3>
+            <div class="grid-2">
+                <div class="role-card">
+                    <h4>Research Director (Laura)</h4>
+                    <ul style="margin-left: 1rem; font-size: 0.9rem;">
+                        <li>Explicit remit includes extension outcomes (funding/employment support)</li>
+                        <li>Provides global constraints (capacity, ratios, location split, funding expectations)</li>
+                        <li>Ensures alignment with Berkeley main-program RMs and survey standards</li>
+                        <li>Co-designs principles; delegates operationalization to Extension Lead</li>
+                    </ul>
+                </div>
+                <div class="role-card">
+                    <h4>London Leadership (Matthew)</h4>
+                    <ul style="margin-left: 1rem; font-size: 0.9rem;">
+                        <li>Historical context on what went wrong (late hiring, handover chaos, no SSOT)</li>
+                        <li>Big picture targets for hiring and capacity</li>
+                        <li>Strategy + design focus; less day-to-day extension ops</li>
+                        <li>Preferences for onboarding timing (e.g., November for winter extensions)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>8.2 Operational Roles</h3>
             <div class="grid-2">
                 <div class="role-card">
                     <h4>Extension Lead (Henning)</h4>
                     <ul style="margin-left: 1rem; font-size: 0.9rem;">
-                        <li>Owns assignment scheme end-to-end</li>
+                        <li>Owns assignment scheme end-to-end for London (and most extension RMs globally)</li>
                         <li>Runs the flowchart for each fellow</li>
                         <li>Ensures checklist complete before Day 1</li>
                         <li>Tracks red flags during extension</li>
-                        <li>Delegates execution (survey ops, Airtable, etc.)</li>
+                        <li>Delegates execution (Patrick for extension/founder support; other RMs for survey ops, Airtable, handover audits)</li>
                     </ul>
                 </div>
                 <div class="role-card">
@@ -412,8 +600,8 @@ flowchart TD
             </div>
         </div>
         
-        <div class="section">
-            <h2>Red Flags to Track</h2>
+        <div class="section" id="redflags">
+            <h2>9. Red Flags to Track</h2>
             <p style="margin-bottom: 1rem; color: var(--text-secondary);">Signals that should trigger mid-extension review:</p>
             
             <div class="warning-box">
@@ -446,8 +634,8 @@ flowchart TD
             </div>
         </div>
         
-        <div class="section">
-            <h2>Location-Specific Considerations</h2>
+        <div class="section" id="location">
+            <h2>10. Location-Specific Considerations</h2>
             
             <table>
                 <tr>
@@ -480,6 +668,52 @@ flowchart TD
             <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
                 <strong>Note:</strong> With 70% of extensions in London, London SRM pods should be sized to absorb this load. Berkeley pods "export" fellows but maintain capacity for the 30% staying.
             </p>
+        </div>
+        
+        <div class="section" style="border: 2px solid var(--accent-green);">
+            <h2>📋 One-Pager for RMs</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Share this summary with the RM team:</p>
+            
+            <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 8px;">
+                <h3 style="color: var(--accent-green); margin-top: 0;">Extension RM Assignments — 2026 Principles</h3>
+                
+                <p style="margin: 1rem 0;"><strong>We prioritize continuity when:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>You and the fellow want to keep working together</li>
+                    <li>Survey & mentor data support that</li>
+                    <li>Your capacity allows</li>
+                </ul>
+                
+                <p style="margin: 1rem 0;"><strong>Load balancing:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>No RM will start extension with 0 fellows</li>
+                    <li>No RM should be overloaded beyond a sustainable range given main-program & project duties</li>
+                    <li>Cross-timezone and megastream fellows count as heavier load</li>
+                </ul>
+                
+                <p style="margin: 1rem 0;"><strong>Paired RMs:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>For complex "megastreams" and multi-mentor setups, we'll increasingly use paired RMs so no one is a single point of failure</li>
+                    <li>Both RMs in a pair report to the same SRM</li>
+                </ul>
+                
+                <p style="margin: 1rem 0;"><strong>Handoff process:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Handover follows a standard pattern: shadow → lead-swap → full handover</li>
+                    <li>No more ad-hoc transitions</li>
+                    <li>4 weeks lead time before extension starts</li>
+                </ul>
+                
+                <p style="margin: 1rem 0;"><strong>Feedback & evaluation:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>We will run extension-specific surveys to get fellow & mentor feedback on RMs</li>
+                    <li>These align with main-program surveys so we can compare and improve</li>
+                </ul>
+                
+                <div class="success-box" style="margin-top: 1.5rem;">
+                    <strong>If you see confusing ownership, unclear handovers, or serious overload, please flag it to Henning early</strong>—those are process bugs we want to fix, not individual failures.
+                </div>
+            </div>
         </div>
         
         <div class="section" style="background: var(--bg-tertiary);">
